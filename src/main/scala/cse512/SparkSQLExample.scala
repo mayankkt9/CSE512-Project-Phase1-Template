@@ -1,7 +1,10 @@
+
+
 package cse512
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.{SaveMode, SparkSession}
+import scala.collection.Seq
 
 object SparkSQLExample {
 
@@ -14,7 +17,7 @@ object SparkSQLExample {
     val spark = SparkSession
       .builder()
       .appName("CSE512-Phase1")
-      .config("spark.some.config.option", "some-value")//.master("local[*]")
+      .config("spark.some.config.option", "some-value").master("local[*]")
       .getOrCreate()
 
     paramsParser(spark, args)
@@ -86,5 +89,7 @@ object SparkSQLExample {
     val resultDf = Seq(queryName, queryResult.toString).toDF()
     resultDf.write.mode(SaveMode.Overwrite).csv(outputPath)
   }
+
+
 
 }
